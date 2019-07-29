@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+      <form [formGroup]="myForm" (ngSubmit)="save()">
+ 
+          <div class="form-group">
+            <label for="firstname">first name</label>
+            <input type="text" class="form-control" formControlName="firstname">
+            <span class="error" *ngIf="myForm.controls['firstname'].hasError('required')">
+              First name is required	
+            </span>
+            <span class="error" *ngIf="myForm.controls['firstname'].hasError('maxlength')">
+              maxLength exceed
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last name</label>
+            <input type="text" class="form-control" formControlName="lastname">
+            <span class="error" *ngIf="myForm.controls['lastname'].hasError('required')">
+              Last name is required
+            </span>
+          </div>
+          <div formGroupName="address">
+              <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" formControlName="city">
+                  <span class="error" *ngIf="myForm.controls.address.controls['city'].hasError('required')">
+                    city is required
+                  </span>
+                </div>
+                <div class="form-group">
+                    <label for="state">state</label>
+                    <input type="text" class="form-control" formControlName="state">
+                    <span class="error" *ngIf="myForm.controls.address.controls['state'].hasError('required')">
+                      state is required
+                    </span>
+                  </div>
+          </div>
+          <button type="submit" [disabled]="!myForm.valid" class="btn btn-default">Submit</button>
+        </form>
+        
+  </div>
+  </div>
